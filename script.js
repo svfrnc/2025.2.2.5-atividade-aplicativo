@@ -20,7 +20,6 @@ function limpar() {
     document.getElementById('resultado').value = "";
     executouCalculo = false; 
 }
-
 // Função que realiza o cálculo
 function calcular() {
     var visor = document.getElementById('resultado');
@@ -131,28 +130,4 @@ function limparHistorico() {
     localStorage.removeItem('historico_brat');
     atualizarExibicaoHistorico();
 }
-
-// Atualize a sua função calcular() existente:
-function calcular() {
-    var visor = document.getElementById('resultado');
-    var expressao = visor.value;
-
-    if (expressao) {
-        try {
-            var resultadoFinal = eval(expressao);
-            visor.value = resultadoFinal;
-            
-            // NOVO: Salva no histórico se o cálculo for válido
-            salvarNoHistorico(expressao, resultadoFinal);
-            
-        } catch (e) {
-            alert("Operação inválida!");
-            limpar();
-        }
-    } else {
-        console.log("Nada para calcular");
-    }
-}
-
-// Opcional: Atualize a função efeitoMusical para incluir os elementos do histórico
-// Adicione 'h2' e '.btn-limpar-hist' na lista de querySelectorAll dentro de efeitoMusical
+document.addEventListener('keydown', pressionartecla);
