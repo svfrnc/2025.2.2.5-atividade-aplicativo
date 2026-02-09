@@ -1,29 +1,44 @@
-// Função para inserir os números e operadores no visor
+let executouCalculo = false;
 function inserir(valor) {
     var visor = document.getElementById('resultado');
-    visor.value += valor;
-}
+    
+    // Lista de operadores para checagem
+    const operadores = ['+', '-', '*', '/'];
 
+    // Se o visor mostra um resultado e o usuário clica em um NÚMERO
+    if (executouCalculo && !operadores.includes(valor)) {
+        visor.value = valor; // Substitui o resultado pelo novo número
+    } else {
+        visor.value += valor; // Se for operador, continua a conta
+    }
+    
+    // Resetamos o estado para que os próximos cliques funcionem normalmente
+    executouCalculo = false;
+}
 // Função para limpar o visor (botão C)
 function limpar() {
     document.getElementById('resultado').value = "";
+    executouCalculo = false; 
 }
 
 // Função que realiza o cálculo
 function calcular() {
-    var resultado = document.getElementById('resultado').value;
+    var visor = document.getElementById('resultado');
+    var expressao = visor.value;
 
-    if (resultado) {
+    if (expressao) {
         try {
-            // O eval() pega a string do visor e calcula como matemática pura
-            document.getElementById('resultado').value = eval(resultado);
+            var resultadoFinal = eval(expressao);
+            visor.value = resultadoFinal;
+            
+            // ESSA LINHA É A CHAVE: Ela avisa que o visor agora tem um resultado
+            executouCalculo = true; 
+            
+            salvarNoHistorico(expressao, resultadoFinal);
         } catch (e) {
-            // Caso o usuário digite algo inválido (ex: 2++2)
             alert("Operação inválida!");
             limpar();
         }
-    } else {
-        console.log("Nada para calcular");
     }
 }
 
@@ -79,24 +94,42 @@ function pressionartecla(event) {
         var visor = document.getElementById('resultado');
         visor.value = visor.value.slice(0, -1);
     }
+    
+}
+// Adicione estas variáveis e funções ao seu script.js
 
 function alternarHistorico() {
     const aba = document.getElementById('aba-historico');
-    aba.classList.toggle('aberto');
+    if (aba) {
+        aba.classList.toggle('aberto');
+    } else {
+        console.error("Aba de histórico não encontrada!");
+    }
 }
 
 function salvarNoHistorico(expressao, resultado) {
-    const lista = document.getElementById('lista-historico');
-    const item = document.createElement('div');
-    item.className = 'item-historico';
-    item.innerHTML = `${expressao} = <strong>${resultado}</strong>`;
-    
-    // Insere no topo da lista
-    lista.prepend(item);
+    let historico = JSON.parse(localStorage.getItem('historico_brat')) || [];
+    historico.unshift({ expressao, resultado });
+    localStorage.setItem('historico_brat', JSON.stringify(historico));
+    atualizarExibicaoHistorico();
 }
+function atualizarExibicaoHistorico() {
+    const lista = document.getElementById('lista-historico');
+    const historico = JSON.parse(localStorage.getItem('historico_brat')) || [];
+    
+    // Limpa a lista atual para reconstruir (Retrieve/HTML dinâmico)
+    lista.innerHTML = "";
 
+    historico.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'item-historico';
+        div.innerHTML = `${item.expressao} = <strong>${item.resultado}</strong>`;
+        lista.appendChild(div);
+    });
+}
 function limparHistorico() {
-    document.getElementById('lista-historico').innerHTML = "";
+    localStorage.removeItem('historico_brat');
+    atualizarExibicaoHistorico();
 }
 
 // Atualize a sua função calcular() existente:
@@ -123,4 +156,3 @@ function calcular() {
 
 // Opcional: Atualize a função efeitoMusical para incluir os elementos do histórico
 // Adicione 'h2' e '.btn-limpar-hist' na lista de querySelectorAll dentro de efeitoMusical
-}

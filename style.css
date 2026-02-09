@@ -82,8 +82,9 @@ button:hover {
 }
 
 .btn-zero {
-    grid-column: span 2;
+    grid-column: span 1;
 }
+
 .btn-musical {
     background-color: #161616;
     color: #eee;
@@ -111,26 +112,35 @@ button:hover {
 .historico-container {
     background-color: #8ACE00;
     width: 0; /* Começa fechada */
-    height: 440px; /* Altura aproximada da calculadora */
+    height: 100%; /* Altura aproximada da calculadora */
+    max-height: 500px;
     overflow: hidden;
     transition: 0.5s;
-    border-radius: 0 10px 10px 0;
-    box-shadow: 5px 10px 20px rgba(0,0,0,0.3);
+    border-radius: 10px; 
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.3);
     display: flex;
     flex-direction: column;
     padding: 0;
+    margin-left: 10px;
+}
+#header-img-hist {
+    width: 100%;
+    height: auto;     
+    display: block;
 }
 
 .historico-container.aberto {
     width: 200px;
     padding: 20px;
-    border-left: 2px solid #202020;
+    border: none;
 }
 
 .historico-container h2 {
-    font-size: 1.2rem;
+font-size: 1.2rem;
     text-transform: lowercase;
     margin-top: 0;
+    text-align: center;
+    width: 100%;
 }
 
 #lista-historico {
@@ -142,21 +152,22 @@ button:hover {
 }
 
 .item-historico {
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-    padding: 5px 0;
+    border-bottom: none;
+    padding: 8px 0;
 }
 
 /* Botão dentro do histórico */
 .btn-limpar-hist {
     background-color: #202020;
-    color: #8ACE00;
+    color: #eee;
     width: 100%;
     text-transform: lowercase;
 }
 
 /* Botão H na calculadora */
 .btn-hist {
-    background-color: #ffffff;
+    background-color: #000000;
+    color:#eee
 }
 
 /* Ajuste na calculadora para o encaixe */

@@ -17,6 +17,7 @@
         <div class="botoes">
             <button onclick="limpar()" class="btn-limpar">C</button>
             <button onclick="inserir('/')" onkeypress="pressionartecla(event)">/</button>
+            <button onclick="alternarHistorico()" class="btn-hist">histórico</button>
             <button onclick="inserir('*')" onkeypress="pressionartecla(event)">X</button>
             
             <button onclick="inserir('7')"onkeypress="pressionartecla(event)">7</button>
@@ -42,7 +43,9 @@
         </div>
     </div>
     <div id="aba-historico" class="historico-container">
-        <h2>histórico</h2>
+        <div class="calculadora-header">
+        <img src="histórico logo.png" alt="logo historico" id="header-img-hist">
+    </div>
         <div id="lista-historico"></div>
         <button onclick="limparHistorico()" class="btn-limpar-hist">limpar tudo</button>
     </div>
