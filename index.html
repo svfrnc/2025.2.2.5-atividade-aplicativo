@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Simples - Web Design</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="calculadora">
+        <div class="calculadora-header">
+        <img src="calculadora brat.png" alt="logo" id="header-img">
+    </div>
+        <input type="text" id="resultado" disabled>
+        
+        <div class="botoes">
+            <button onclick="limpar()" class="btn-limpar">C</button>
+            <button onclick="inserir('/')" onkeypress="pressionartecla(event)">/</button>
+            <button onclick="inserir('*')" onkeypress="pressionartecla(event)">X</button>
+            
+            <button onclick="inserir('7')"onkeypress="pressionartecla(event)">7</button>
+            <button onclick="inserir('8')"onkeypress="pressionartecla(event)">8</button>
+            <button onclick="inserir('9')" onkeypress="pressionartecla(event)">9</button>
+            <button onclick="inserir('-')" onkeypress="pressionartecla(event)">-</button>
+            
+            <button onclick="inserir('4')" onkeypress="pressionartecla(event)">4</button>
+            <button onclick="inserir('5')" onkeypress="pressionartecla(event)">5</button>
+            <button onclick="inserir('6')" onkeypress="pressionartecla(event)">6</button>
+            <button onclick="inserir('+')" onkeypress="pressionartecla(event)">+</button>
+            
+            <button onclick="inserir('1')" onkeypress="pressionartecla(event)">1</button>
+            <button onclick="inserir('2')" onkeypress="pressionartecla(event)">2</button>
+            <button onclick="inserir('3')" onkeypress="pressionartecla(event)">3</button>
+            
+            <button onclick="calcular()" class="btn-igual">=</button>
+            <button onclick="inserir('0')" onkeypress="pressionartecla(event)" class="btn-zero">0</button>
+            <button onclick="inserir('.')" onkeypress="pressionartecla(event)">.</button>
+            
+            <audio id="musica-calculadora" src="365 remix.mp3"></audio>
+            <button onclick="efeitoMusical()" class="btn-musical">☢️ brat ☢️</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
