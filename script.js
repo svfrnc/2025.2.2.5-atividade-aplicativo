@@ -79,5 +79,48 @@ function pressionartecla(event) {
         var visor = document.getElementById('resultado');
         visor.value = visor.value.slice(0, -1);
     }
+
+function alternarHistorico() {
+    const aba = document.getElementById('aba-historico');
+    aba.classList.toggle('aberto');
+}
+
+function salvarNoHistorico(expressao, resultado) {
+    const lista = document.getElementById('lista-historico');
+    const item = document.createElement('div');
+    item.className = 'item-historico';
+    item.innerHTML = `${expressao} = <strong>${resultado}</strong>`;
     
+    // Insere no topo da lista
+    lista.prepend(item);
+}
+
+function limparHistorico() {
+    document.getElementById('lista-historico').innerHTML = "";
+}
+
+// Atualize a sua função calcular() existente:
+function calcular() {
+    var visor = document.getElementById('resultado');
+    var expressao = visor.value;
+
+    if (expressao) {
+        try {
+            var resultadoFinal = eval(expressao);
+            visor.value = resultadoFinal;
+            
+            // NOVO: Salva no histórico se o cálculo for válido
+            salvarNoHistorico(expressao, resultadoFinal);
+            
+        } catch (e) {
+            alert("Operação inválida!");
+            limpar();
+        }
+    } else {
+        console.log("Nada para calcular");
+    }
+}
+
+// Opcional: Atualize a função efeitoMusical para incluir os elementos do histórico
+// Adicione 'h2' e '.btn-limpar-hist' na lista de querySelectorAll dentro de efeitoMusical
 }

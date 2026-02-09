@@ -100,3 +100,66 @@ button:hover {
 .fundo-animado {
     animation: piscar 0.1s infinite; 
 }
+/* Container para alinhar calculadora e histórico lado a lado */
+.main-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 0; /* Colado na calculadora */
+}
+
+/* Estilo da Aba de Histórico */
+.historico-container {
+    background-color: #8ACE00;
+    width: 0; /* Começa fechada */
+    height: 440px; /* Altura aproximada da calculadora */
+    overflow: hidden;
+    transition: 0.5s;
+    border-radius: 0 10px 10px 0;
+    box-shadow: 5px 10px 20px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.historico-container.aberto {
+    width: 200px;
+    padding: 20px;
+    border-left: 2px solid #202020;
+}
+
+.historico-container h2 {
+    font-size: 1.2rem;
+    text-transform: lowercase;
+    margin-top: 0;
+}
+
+#lista-historico {
+    flex-grow: 1;
+    overflow-y: auto;
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.item-historico {
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding: 5px 0;
+}
+
+/* Botão dentro do histórico */
+.btn-limpar-hist {
+    background-color: #202020;
+    color: #8ACE00;
+    width: 100%;
+    text-transform: lowercase;
+}
+
+/* Botão H na calculadora */
+.btn-hist {
+    background-color: #ffffff;
+}
+
+/* Ajuste na calculadora para o encaixe */
+.calculadora {
+    z-index: 2; /* Fica por cima da aba se necessário */
+}
